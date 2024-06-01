@@ -1,0 +1,14 @@
+
+syntax = "proto3" ;
+package msg ;
+option go_package = "/msg" ;
+
+
+message cross_tx{
+  //跨分片的交易
+  bytes crossTx = 1 ;
+  // The raw signatures   原始签名
+  bytes signatures = 2;
+  // The IDs of the signers  签名者的id
+  uint64 id = 3 ;
+}

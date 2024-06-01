@@ -1,0 +1,10 @@
+syntax = "proto3" ;
+package msg ;
+
+option go_package = "/msg" ;
+
+import "chain/block.proto" ;
+
+message CommitAck {
+    chain.ProtoBlock Block = 1 ; // The hash of the command that is being acknowledged 正在确认的命令的哈希
+}

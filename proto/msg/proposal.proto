@@ -1,0 +1,33 @@
+syntax = "proto3" ;
+package msg ;
+
+option go_package = "/msg" ;
+
+import "chain/block.proto" ;
+
+// All configuration aggregated here  所有配置聚合在这
+message Proposal {  //提议内容
+	// A proposal contains the following  提议包含下面内容
+	// The block being proposed  被提议的区块
+	chain.ProtoBlock Block = 1 ;
+	//The forward sender of this propsoal innitial value is nil  该提议此前未有人发送
+	uint64 ForwardSender = 2;
+	//The signature of sender  发送者的签名
+	bytes ForwardSig = 3;
+	// The miner of the block  区块的旷工
+	uint64 Miner = 4;
+	// The signature for the block  区块的签名
+	bytes MiningProof = 5;
+	// The view number   视图
+	uint64 View = 6 ;
+	// Propose Evidence - Evidence why this node should propose this block
+	// Can be a plain signature for closed world systems
+	// Can be certificate for previous block as in Sync HotStuff/HotStuff
+    // Can be a nonce in PoW systems
+	//提出证据 - 为什么这个节点应该提出这个块的证据
+	// 可以是封闭世界系统的普通签名
+	// 可以是前一个块的证书，如同步 HotStuffHotStuff
+	// 可以是 PoW 系统中的随机数
+	bytes ProposeEvidence = 7 ;
+}
+

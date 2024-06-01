@@ -1,0 +1,33 @@
+syntax = "proto3" ;
+package msg ;
+
+option go_package = "/msg" ;
+
+import "msg/proposal.proto" ;
+import "msg/evidence.proto" ;
+import "msg/clientAck.proto" ;
+import "msg/vote.proto" ;
+import "msg/cross.proto" ;
+import "msg/cross_shard_view_change_commit_certificate.proto";
+import "msg/csvc_propose.proto";
+import "msg/quest.proto";
+
+message SyncHSMsg {
+    oneof Msg {
+        msg.Proposal Prop = 1 ;  //提议
+        // msg.NoProgressBlame Npblame = 2 ;
+        // msg.EquivocationBlame Eqblame = 3 ;
+        msg.EquivocationEvidence Eqevidence = 2;  //模棱两可证据
+        msg.MalicousProposalEvidence Mpevidence = 3; //恶意提议证据
+        msg.MalicousVoteEvidence Mvevidence = 4; //恶意投票证据
+        msg.CommitAck Ack = 5; //提交
+        bytes Tx = 6 ;   //tx交易信息
+        // msg.QuitView QV = 7 ;
+        msg.ProtoVote Vote = 7 ; //投票信息
+        cross_tx Cross=8; //跨分片的交易信息  按照接受到的信息去分类
+        csvc_propose csProp=9;
+        quest quest=10;
+        cross_shard_view_change_commit_certificate csvc_CC=11;
+
+    }
+}

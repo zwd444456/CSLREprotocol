@@ -1,0 +1,26 @@
+syntax = "proto3" ;
+package msg ;
+
+option go_package = "/msg" ;
+
+// import "msg/cert.proto" ;
+
+message ProtoVoteBody {  //协议投票内容
+    uint64 Voter = 1 ; //投票者
+    bytes Signature = 2 ; //投票者签名
+}
+message ProtoVote { //协议投票
+    ProtoVoteData Data = 1 ; //投票数据
+    ProtoVoteBody Body = 2 ;//投票内容
+}
+// VoteData are the parts that are independent of the voter 投票数据是独立于投票者的部分
+message ProtoVoteData {
+    bytes BlockHash = 1 ; // Bk 区块哈希
+    uint64 View = 2 ; // v 试图v
+    uint64 Owner = 3; //the owner of this block 区块的提出者
+}
+
+// message BlockCertificate {
+// 	msg.Certificate BCert = 1 ;
+//     VoteData Data = 2 ;
+// }

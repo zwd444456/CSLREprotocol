@@ -1,0 +1,16 @@
+syntax = "proto3" ;
+package msg ;
+
+option go_package = "/msg" ;
+//证书
+/**
+adas
+ */
+message Certificate {  //证明
+	// The data on which we need signatures 我们需要签名的信息
+	bytes data = 1 ;
+	// The raw signatures   原始签名
+	repeated bytes signatures = 2;
+	// The IDs of the signers  签名者的id
+	repeated uint64 ids = 3 ;
+}

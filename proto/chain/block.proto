@@ -1,0 +1,27 @@
+syntax = "proto3" ;
+package chain ;
+
+option go_package = "/chain" ;
+
+message ProtoHeader {  //协议区块头
+    // Hash Pointer哈希指针  父亲的hash
+    bytes ParentHash = 1 ;
+    // Hash of all the transactions in this block 此区块中所有交易的哈希值
+    bytes TxHash = 2 ;
+    // Block Height区块高度
+    uint64 Height = 3 ;
+    // Any extra data 任意额外数据
+    bytes extra = 4 ;
+}
+
+message ProtoBlock { //协议的区块
+    ProtoHeader Header = 1 ;  //块头
+    ProtoBody Body = 2 ;//块内容
+    // Block hash
+    bytes BlockHash = 3 ; //区块哈希
+}
+
+message ProtoBody {  //协议的区块体
+    repeated bytes Txs = 1 ; //交易信息
+    repeated bytes Responses = 2 ;//返回值
+}

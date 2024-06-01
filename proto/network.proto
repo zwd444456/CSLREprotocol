@@ -1,0 +1,14 @@
+syntax = "proto3" ;
+package config ;
+
+option go_package = "/config" ;
+
+message Address { //网络地址
+    string IP = 1 ; //ip
+    string Port = 2 ;//端口
+}
+
+message NetConfig { //新设置
+    // Map how to contact each Node 映射如何联系每个节点。
+    map < uint64 , Address > NodeAddressMap = 1 ;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3" ;
+package config ;
+
+option go_package = "/config" ;
+
+import "cryptoconf.proto" ;
+import "config/protocol.proto" ;
+import "network.proto" ;
+
+// All configuration aggregated here   所有配置信息聚合到这
+message NodeDataConfig {
+	// Protocol specific configuration 协议具体配置
+	SyncHSConfig ProtConfig = 1 ;
+	// Network configuration for nodes  节点的网络配置
+	NetConfig NetConfig = 2 ;
+	// Network configuration for clients 客户的网络配置
+	string ClientPort = 3 ;
+	// Cryptographic configuration  加密配置
+	CryptoConfig CryptoCon = 4 ;
+}

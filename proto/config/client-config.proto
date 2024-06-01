@@ -1,0 +1,17 @@
+syntax = "proto3" ;
+package config ;
+
+option go_package = "/config" ;
+
+import "cryptoconf.proto" ;
+import "protocol.proto" ;
+import "network.proto" ;
+
+message ClientDataConfig {  //客户端数据配置
+    // Protocol specific configuration  协议具体设置
+    ProtoInfo Info = 1 ;
+    // Network Configuration  网络配置
+    NetConfig NetConfig = 2 ;
+    // Cryptographic configuration  加密配置
+    CryptoConfig CryptoCon = 4 ;
+}

@@ -1,0 +1,45 @@
+syntax = "proto3" ;
+package msg ;
+
+option go_package = "/msg" ;
+
+
+import "msg/proposal.proto" ;
+import "msg/vote.proto" ;
+
+message EvidenceData {
+    uint64 MisbehaviourTarget = 1 ; //The misbehaviour target 不当行为目标
+    uint64 view = 2 ; // The view number which produce this evidence   产生此证书的视图
+    
+}
+
+message Evidence {
+    EvidenceData EvidenceData = 1;  //证据数据
+    uint64 EvOrigin = 2 ; // The sender of this evidence 发送证据的节点
+    bytes OrSignature = 3; //The sigature of this sender 发送节点的签名
+}
+
+message EquivocationEvidence { //模棱两可证据
+    Evidence Evidence = 1; //证据
+    msg.Proposal e1 = 2 ; //the content of this evidence is    证据内容
+    //两个块和相应的签名以及该领导者的公钥
+    msg.Proposal e2 = 3 ;//(two blocks and corresponding signatures and the pubkey of this leader)
+    
+}
+
+message MalicousProposalEvidence{ //恶意提议证据
+    Evidence Evidence = 1;        //but sent the proposal (the content of this )但发送了提案（内容此）
+    // 证据配置
+    msg.Proposal e = 2;
+
+}
+
+message MalicousVoteEvidence{// 恶意投票证据是投票给非领导者块的节点
+    Evidence Evidence = 1 ;
+    msg.ProtoVote e = 2;
+}
+//why don't have withholding block case, because there is no message in network should be transform
+//为什么没有预扣块大小写，因为网络中没有消息应该被转换
+
+
+

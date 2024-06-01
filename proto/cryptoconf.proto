@@ -1,0 +1,14 @@
+syntax = "proto3" ;
+package config ;
+
+option go_package = "/config" ;
+
+message CryptoConfig {  //加密配置
+    // A string defining what key type is being stored. Eg. Secp256k1.Type()
+  // 定义要存储的密钥类型的字符串。例如。Secp256k1.Type（）
+    string KeyType = 1 ;
+    // Private Keys  //私钥
+    bytes PvtKey = 2 ;
+    // Mapping between a node and its publickey  节点与其公钥之间的映射
+	map <uint64, bytes> NodeKeyMap = 3 ;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3" ;
+package config ;
+
+option go_package = "/config" ;
+
+message ProtoInfo {  //协议信息
+    uint64 NodeSize = 1 ;  // Number of nodes in the system 系统节点数量
+    uint64 Faults = 2 ;    // Number of Faults in the system 系统故障节点数量
+    uint64 BlockSize = 3 ; // Number of commands in a block  区块大小
+}
+
+message SyncHSConfig {  //同步配置
+    uint64 Id  = 1 ;       // Replica ID  节点ID
+    ProtoInfo Info = 2 ;    //协议信息
+    double Delta = 3 ;     // In seconds  延迟
+}

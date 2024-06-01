@@ -1,0 +1,11 @@
+
+syntax = "proto3" ;
+package msg ;
+option go_package = "/msg" ;
+
+
+message cross_shard_view_change_commit_certificate{
+  uint64  shardleader=1;
+  // The raw signatures   委员会的所有签名
+  bytes signatures = 2;
+}

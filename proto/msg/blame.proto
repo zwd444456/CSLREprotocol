@@ -1,0 +1,32 @@
+syntax = "proto3" ;
+package msg ;
+
+option go_package = "/msg" ;
+
+import "msg/proposal.proto" ;
+import "msg/cert.proto" ;
+
+message BlameData {
+	uint64 blameTarget = 1 ; // Who are we blaming? 谁是我们要谴责的目标
+	uint64 view = 2 ; // In what view are we blaming this leader? //从什么角度去责怪领导人
+}
+
+message Blame {  //谴责
+	BlameData BlData = 1 ;  //谴责数据
+	uint64 BlOrigin = 2 ; // Who is sending the blame  谁送来的谴责信息
+	bytes signature = 3 ; //标记
+}
+
+message NoProgressBlame {//无进度谴责
+	Blame blame = 1 ;
+}
+
+message EquivocationBlame {  //模棱两可的谴责
+	Blame blame = 1 ;
+	msg.Proposal b1 = 2 ;
+	msg.Proposal b2 = 3 ;
+}
+
+message QuitView {
+	msg.Certificate BlCert = 1 ;
+}
