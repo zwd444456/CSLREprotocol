@@ -23,7 +23,7 @@ func init() {
 	Delay = 100
 	Round = 5
 	Node = 4
-	ShardNumber = 5
+	ShardNumber = 3
 	MaliciousNode = 1
 	Shard3Leader = 8000 + Node*2 + 1
 	Shard1Leader = 8000 + Node*0 + 1

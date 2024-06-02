@@ -1,5 +1,5 @@
-Transaction 1: 963.5752ms
-Transaction 2: 907.5629ms
-Transaction 3: 923.8654ms
-Transaction 4: 908.6108ms
-Transaction 5: 938.8699ms
+Transaction 1: 686.6927ms
+Transaction 2: 674.9541ms
+Transaction 3: 672.0056ms
+Transaction 4: 676.9396ms
+Transaction 5: 674.5806ms

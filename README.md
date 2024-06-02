@@ -1,6 +1,7 @@
 Sharding blockchain is a technology designed to improve the performance and scalability of traditional blockchain systems.
 However, due to its design, communication between shards depends on shard leaders for transmitting information, while shard members are unable to detect communication activities between shards.
 Consequently, Byzantine nodes can act as shard leaders, engaging in malicious behaviors to disrupt message transmission.
+
 To address these issues, we propose the Cross-Shard Leader Re-election Protocol (CSLRE), which is based on the Two-Phase Atomic Commit Protocol (2PC).
 CSLRE employs Byzantine Broadcast/Byzantine Agreement (BB/BA) for Byzantine fault tolerance to generate Cross-Shard Leader Re-election certificates, thereby reducing the impact of shard leaders on inter-shard communication.
 It also uses Round-robin mechanism to facilitate leader re-election.
@@ -8,9 +9,7 @@ Moreover, we demonstrate that CSLRE maintains the security and liveness of shard
 Finally, we conducted an experimental comparison between CSLRE and other cross-shard protocols.
 The results indicate that CSLRE exhibits superior performance in reducing communication latency.
 We deployed our implementation on a cloud instance from the Alibaba Cloud .
-We used an ecs.g7.8xlarge instance (32 vCPUs, 64 GB of memory, and 25 GB/s network bandwidth) 
-in our Hangzhou data center. The instance operates on a dedicated network with
-a network latency of no more than 20 ms, runs Windows 11 as the operating system, and uses 100GB of SSD storage.
+
 In our experiment, the main metrics were latency (quantified in seconds) and throughput (quantified in bytes processed per second).
 We implement a two-stage atomic commit model under the standard synchronous model.
 Shards mainly use BFTs based on the BB prototype to synchronize hotstuff (SYNC) and reputation-based state machine replication (RBSMR) for certificate information generation and final transaction confirmation.
@@ -31,12 +30,13 @@ All throughput and latency results are measured from clients of separate process
 We ensure that the performance of sharding is not limited by the lack of transactions proposed by the client.
 
 QUICK START
-
-1. In the corresponding file name, for example, nomal2PC. Start by opening the nomal2pc.go file in the appropriate folder. 
-   Execute the file. You can see the execution, and the file is recorded as a file, adjusting the parameter values in config/globals.go.
+1. `go mod download` 
+2. `/quicktest.sh`
+3. In the corresponding file name, for example, nomal2PC. Start by opening the nomal2pc.go file in the appropriate folder. 
+   Execute the file. You can see the execution, and the file is recorded as a file, adjusting the parameter values in `config/globals.go`.
    Other procedures are executed similarly.
-2. In the config/globals. Adjust the Delay go, Round, Node, ShardNumber, GlobalPayload.
+4. In the `config/globals`. Adjust the **Delay , Round, Node, ShardNumber, GlobalPayload**.
    They represent the maximum round trip delay per round, the number of transaction rounds, the number of nodes in the shard, the number of shards, and the transaction size. 
    (Note: shardNumber is a new content and can only be controlled as 3-7) It cannot be added.
-3. You can view all data records under the Dataforexpreiment/ file. The folder names named after different protocols.
+5. You can view all data records under the `/Dataforexpreiment/` file. The folder names named after different protocols.
    For example, 400T4N100D100R.txt under normal2PC/ represents the transaction size of 400, the maximum round-trip delay of 4,100 members per shard, and the result of 100 rounds of transactions. Others are similar.
