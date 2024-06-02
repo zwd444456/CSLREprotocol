@@ -6,11 +6,11 @@ import (
 	"math/big"
 	"sync"
 
+	"code/msg"
 	chain "github.com/adithyabhatkajake/libsynchs/chain"
 	config "github.com/adithyabhatkajake/libsynchs/config"
-	msg "github.com/adithyabhatkajake/libsynchs/msg"
-	lutil "github.com/adithyabhatkajake/libsynchs/util"
 
+	"code/util"
 	"github.com/libp2p/go-libp2p-core/host"
 	peerstore "github.com/libp2p/go-libp2p-core/peer"
 )
@@ -115,8 +115,8 @@ type SyncHS struct {
 	callFuncNotFinish bool
 	gcallFuncFinish   bool
 	// The timer of every node 每个节点的时间
-	timer  lutil.Timer
-	timer2 lutil.Timer //跨分片的节点时间
+	timer  util.Timer
+	timer2 util.Timer //跨分片的节点时间
 	//initial reputaion of all nodes 初始化所有节点的信誉
 	initialReplicaSore *big.Float
 }

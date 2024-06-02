@@ -1,8 +1,10 @@
 module code
 
 go 1.20
+
 require (
 	github.com/adithyabhatkajake/libchatter v0.0.0-20200829075232-4384baf678ed
+	github.com/adithyabhatkajake/libsynchs v0.0.0-20201002020609-f6cbd7c4b425
 	github.com/ethereum/go-ethereum v1.9.20
 	github.com/libp2p/go-libp2p v0.11.0
 	github.com/libp2p/go-libp2p-core v0.6.1

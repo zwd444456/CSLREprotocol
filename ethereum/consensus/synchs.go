@@ -6,7 +6,6 @@
 package consensus
 
 import (
-	"fmt"
 	"math/big"
 	"sync"
 	"time"
@@ -21,7 +20,6 @@ import (
 	ethstate "github.com/ethereum/go-ethereum/core/state"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
-	ethparams "github.com/ethereum/go-ethereum/params"
 	ethrlp "github.com/ethereum/go-ethereum/rlp"
 	ethtrie "github.com/ethereum/go-ethereum/trie"
 
@@ -117,45 +115,9 @@ func (cc *ChainContext) verifyHeader(chain ethcons.ChainHeaderReader, header *et
 	if header.Number == nil {
 		return errUnknownBlock
 	}
-	number := header.Number.Uint64()
-
 	// Don't waste time checking blocks from the future
 	if header.Time > uint64(time.Now().Unix()) {
 		return consensus.ErrFutureBlock
-	}
-
-	if header.Time <= parent.Time {
-		return errOlderBlockTime
-	}
-	// Verify that the gas limit is <= 2^63-1
-	cap := uint64(0x7fffffffffffffff)
-	if header.GasLimit > cap {
-		return fmt.Errorf("invalid gasLimit: have %v, max %v", header.GasLimit, cap)
-	}
-	// Verify that the gasUsed is <= gasLimit
-	if header.GasUsed > header.GasLimit {
-		return fmt.Errorf("invalid gasUsed: have %d, gasLimit %d", header.GasUsed, header.GasLimit)
-	}
-
-	// Verify that the gas limit remains within allowed bounds
-	diff := int64(parent.GasLimit) - int64(header.GasLimit)
-	if diff < 0 {
-		diff *= -1
-	}
-	limit := parent.GasLimit / ethparams.GasLimitBoundDivisor
-
-	if uint64(diff) >= limit || header.GasLimit < ethparams.MinGasLimit {
-		return fmt.Errorf("invalid gas limit: have %d, want %d += %d", header.GasLimit, parent.GasLimit, limit)
-	}
-	// Verify that the block number is parent's +1
-	if diff := new(big.Int).Sub(header.Number, parent.Number); diff.Cmp(big.NewInt(1)) != 0 {
-		return ethcons.ErrInvalidNumber
-	}
-	// Verify the engine specific seal securing the block
-	if seal {
-		if err := cc.VerifySeal(chain, header); err != nil {
-			return err
-		}
 	}
 	return nil
 }

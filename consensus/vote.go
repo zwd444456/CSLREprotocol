@@ -3,10 +3,10 @@ package consensus
 import (
 	"math/big"
 
+	"code/msg"
 	"github.com/adithyabhatkajake/libchatter/crypto"
 	"github.com/adithyabhatkajake/libchatter/log"
 	"github.com/adithyabhatkajake/libsynchs/chain"
-	msg "github.com/adithyabhatkajake/libsynchs/msg"
 	pb "google.golang.org/protobuf/proto"
 )
 

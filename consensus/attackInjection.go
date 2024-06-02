@@ -3,8 +3,8 @@ package consensus
 import (
 	"time"
 
+	"code/msg"
 	"github.com/adithyabhatkajake/libchatter/log"
-	msg "github.com/adithyabhatkajake/libsynchs/msg"
 	pb "google.golang.org/protobuf/proto"
 )
 
@@ -221,7 +221,6 @@ func (n *SyncHS) voteForNonLeaderBlk() {
 	pvd := &msg.ProtoVoteData{
 		BlockHash: []byte{'I', 'n', 'v', 'a', 'l', 'i', 'd'},
 		View:      n.view,
-		Owner:     n.GetID(),
 	}
 	data, err := pb.Marshal(pvd)
 	if err != nil {

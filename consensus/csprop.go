@@ -1,7 +1,7 @@
 package consensus
 
 import (
-	"github.com/adithyabhatkajake/libsynchs/msg"
+	"code/msg"
 )
 
 // 询问信息发送给分片1的leader 并且打开一个计时器，等待2个delta时间，若是还没有任何返回，则说明该领导是恶意的，我们需要执行共识协议去生产csvc-CC证书。

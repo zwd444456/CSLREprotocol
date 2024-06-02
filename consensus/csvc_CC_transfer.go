@@ -1,8 +1,8 @@
 package consensus
 
 import (
+	"code/msg"
 	"github.com/adithyabhatkajake/libchatter/log"
-	"github.com/adithyabhatkajake/libsynchs/msg"
 )
 
 func (n *SyncHS) Crosscertforward() {

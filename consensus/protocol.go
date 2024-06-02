@@ -9,16 +9,16 @@ import (
 	"sync"
 	"time"
 
+	"code/util"
 	"github.com/adithyabhatkajake/libchatter/log"
 	"github.com/adithyabhatkajake/libsynchs/chain"
-	"github.com/adithyabhatkajake/libsynchs/util"
 
 	"github.com/libp2p/go-libp2p"
 
 	"github.com/adithyabhatkajake/libchatter/net"
 	config "github.com/adithyabhatkajake/libsynchs/config"
 
-	msg "github.com/adithyabhatkajake/libsynchs/msg"
+	"code/msg"
 
 	"github.com/libp2p/go-libp2p-core/network"
 	peerstore "github.com/libp2p/go-libp2p-core/peer"

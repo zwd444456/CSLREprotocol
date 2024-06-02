@@ -3,11 +3,11 @@ package consensus
 import (
 	"time"
 
+	"code/msg"
 	"github.com/adithyabhatkajake/libchatter/crypto"
 	"github.com/adithyabhatkajake/libchatter/log"
 	"github.com/adithyabhatkajake/libchatter/util"
 	"github.com/adithyabhatkajake/libsynchs/chain"
-	msg "github.com/adithyabhatkajake/libsynchs/msg"
 	pb "google.golang.org/protobuf/proto"
 )
 

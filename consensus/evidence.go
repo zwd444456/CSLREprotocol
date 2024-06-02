@@ -1,8 +1,8 @@
 package consensus
 
 import (
+	"code/msg"
 	"github.com/adithyabhatkajake/libchatter/log"
-	msg "github.com/adithyabhatkajake/libsynchs/msg"
 
 	// "github.com/adithyabhatkajake/libsynchs/msg"
 	// msg "github.com/adithyabhatkajake/libsynchs/msg"
