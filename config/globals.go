@@ -21,8 +21,8 @@ var ShardNumber int
 func init() {
 	GlobalPayload = strings.Repeat("a", 1000) // Initialize the global payload with 400 'a' characters
 	Delay = 100
-	Round = 5
-	Node = 4
+	Round = 1
+	Node = 8
 	ShardNumber = 3
 	MaliciousNode = 1
 	Shard3Leader = 8000 + Node*2 + 1
